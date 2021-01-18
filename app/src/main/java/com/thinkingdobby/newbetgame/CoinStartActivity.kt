@@ -31,7 +31,6 @@ class CoinStartActivity : AppCompatActivity() {
                 tv_coinStart_result.setText("뒷면!")
             }
 
-            //임시로 작성한 코드
             tv_coinStart_spin.setText("리셋")
 
             tv_coinStart_spin.setOnClickListener {

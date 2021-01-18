@@ -2,6 +2,7 @@ package com.thinkingdobby.newbetgame
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_coin_start.*
 import kotlin.random.Random
 
@@ -17,13 +18,13 @@ class DiceStartActivity : AppCompatActivity() {
         iv_coinStart_coin.setImageResource(getImage(now))
 
         tv_coinStart_spin.setOnClickListener {
-            iv_coinStart_coin.animate().rotationX(360f).setDuration(300).start()
+            val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
+            iv_coinStart_coin.startAnimation(shake)
             val number = getRandomValue()
             val tmp = getImage(number)
             iv_coinStart_coin.setImageResource(tmp)
             tv_coinStart_result.setText("${number + 1}!")
 
-            //임시로 작성한 코드
             tv_coinStart_spin.setText("리셋")
 
             tv_coinStart_spin.setOnClickListener {

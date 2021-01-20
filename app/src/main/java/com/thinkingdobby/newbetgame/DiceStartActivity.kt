@@ -5,8 +5,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_coin_start.*
 import kotlin.random.Random
@@ -16,6 +18,17 @@ class DiceStartActivity : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin_start)
+
+        val decorView = window.decorView
+        var uiOption = window.decorView.systemUiVisibility
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) uiOption =
+            uiOption or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) uiOption =
+            uiOption or View.SYSTEM_UI_FLAG_FULLSCREEN
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) uiOption =
+            uiOption or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+
+        decorView.setSystemUiVisibility(uiOption)
 
         tv_coinStart_result.setText("")
 
@@ -44,6 +57,11 @@ class DiceStartActivity : AppCompatActivity(), SensorEventListener {
         tv_coinStart_back.setOnClickListener {
             finish()
         }
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, 0)
     }
 
     private val sensorManager1 by lazy {

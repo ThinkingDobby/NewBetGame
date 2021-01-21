@@ -23,12 +23,14 @@
         app:layout_constraintTop_toTopOf="@id/guideline" />
 
     <TextView
+        android:id="@+id/tv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/subfont_ttf"
         android:text="화면을 터치해 시작!"
         android:textColor="#C8C3C3"
         android:textSize="20sp"
+        android:padding="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

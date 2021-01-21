@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         decorView.setSystemUiVisibility(uiOption)
 
-        screen_title.setOnClickListener {
+        tv_main.setOnClickListener {
             val intent = Intent(this, SubActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.fadein, R.anim.fadeout)

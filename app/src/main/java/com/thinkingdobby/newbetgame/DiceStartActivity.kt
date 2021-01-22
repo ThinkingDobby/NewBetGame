@@ -8,6 +8,8 @@ import android.hardware.SensorManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_coin_start.*
@@ -101,6 +103,12 @@ class DiceStartActivity : AppCompatActivity(), SensorEventListener {
 
                     val speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000
                     if (speed > SHAKE_THRESHOLD) {
+                        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        if (Build.VERSION.SDK_INT >= 26) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(300, 100))
+                        } else {
+                            vibrator.vibrate(300)
+                        }
                         val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
                         iv_coinStart_coin.startAnimation(shake)
                         val number = getRandomValue()
